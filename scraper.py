@@ -10,3 +10,8 @@ th = browser.page.find_all("th", attrs={"class": "table-rh"})
 distribution = [value.text.replace("\n", "") for value in th]
 distribution = distribution[:98]
 print(distribution)
+#extract table data
+td = browser.page.find_all("td")
+columns = [value.text.replace("\n", "") for value in td]
+columns = columns[6:1084]
+print(columns)
