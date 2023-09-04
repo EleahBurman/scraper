@@ -38,3 +38,14 @@ for idx, key in enumerate(column_names):
 df = pd.DataFrame(data = dictionary)
 
 print(df.head())
+
+#insert data into a database
+connection = sqlite3.connect("linux_distro.db")
+cursor=connection.cursor()
+cursor.execute("create table linux(Distibution, " + ",".join(column_names) + ")")
+for i in range(len(df)):
+  cursor.execute("insert into linux values (?,?,?,?,?,?,?,?,?,?,?,?)", df.iloc[i])
+  
+connection.commit()
+
+connection.close()
